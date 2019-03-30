@@ -4,7 +4,7 @@
 # Setup.
 #
 
-VERSION="2.1.12"
+VERSION="3.0.0"
 N_PREFIX=${N_PREFIX-/usr/local}
 BASE_VERSIONS_DIR=$N_PREFIX/n/versions
 
@@ -211,7 +211,7 @@ show_cursor() {
 #
 
 next_version_installed() {
-  list_versions_installed | grep $selected -A 1 | tail -n 1
+  list_versions_installed | grep "$selected" -A 1 | tail -n 1
 }
 
 #
@@ -219,7 +219,7 @@ next_version_installed() {
 #
 
 prev_version_installed() {
-  list_versions_installed | grep $selected -B 1 | head -n 1
+  list_versions_installed | grep "$selected" -B 1 | head -n 1
 }
 
 #
@@ -412,6 +412,8 @@ tarball_url() {
     *x86_64*) arch=x64 ;;
     *armv6l*) arch=armv6l ;;
     *armv7l*) arch=armv7l ;;
+    *arm64*) arch=arm64 ;;
+    *aarch64*) arch=arm64 ;;
   esac
 
   if [ ${arch} = "armv6l" -a ${BIN_NAME[$DEFAULT]} = node ]; then
@@ -580,10 +582,8 @@ set_quiet() {
 
 remove_versions() {
   test -z $1 && abort "version(s) required"
-  check_current_version
   while test $# -ne 0; do
     local version=${1#v}
-    [ "${BINS[$DEFAULT]}/$version" == "$active" ] && abort "cannot remove currently active version ($active)"
     rm -rf ${VERSIONS_DIR[$DEFAULT]}/$version
     shift
   done
