@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- markdownlint-disable MD024 -->
 
+## [3.0.1] (2019-04-05)
+
+### Added
+
+- install instruction using Homebrew (macOS) [#534]
+- Table of Contents to README [#466]
+
+### Fixed
+
+- lts lookup on node mirrors which don't purge old versions (e.g. taobao) [#512]
+- hide cursor while selecting version from menu [#528]
+
+### Removed
+
+- gitter badge from README, as gitter chatroom inactive
+- inactive Core Team from README
+- instructions for scripted install of npm from README, which should no longer be needed and not working on Mac [#536]
+
 ## [3.0.0] (2019-03-29)
 
 ### Added
@@ -42,17 +60,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#400]: https://github.com/tj/n/issues/400
 [#441]: https://github.com/tj/n/issues/441
 [#448]: https://github.com/tj/n/issues/448
+[#466]: https://github.com/tj/n/issues/466
 [#467]: https://github.com/tj/n/issues/467
+[#512]: https://github.com/tj/n/issues/512
 [#516]: https://github.com/tj/n/issues/516
 [#518]: https://github.com/tj/n/issues/518
 [#521]: https://github.com/tj/n/issues/521
+[#528]: https://github.com/tj/n/issues/528
 [#529]: https://github.com/tj/n/issues/529
 [#531]: https://github.com/tj/n/issues/531
 [#532]: https://github.com/tj/n/issues/532
+[#534]: https://github.com/tj/n/issues/534
+[#536]: https://github.com/tj/n/issues/536
 [#541]: https://github.com/tj/n/issues/541
 [#548]: https://github.com/tj/n/issues/548
 
 <!-- reference links for releases -->
 
-[3.0.0]: https://github.com/tj/n/compare/v2.1.12...3.0.0
 [Unreleased]: https://github.com/tj/n/compare/master...develop
+[3.0.1]: https://github.com/tj/n/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/tj/n/compare/v2.1.12...v3.0.0

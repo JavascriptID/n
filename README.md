@@ -1,6 +1,5 @@
 # `n` – Interactively Manage Your Node.js Versions
 
-[![Join the chat at https://gitter.im/tj/n](https://img.shields.io/gitter/room/tj/n.svg?style=flat-square)](https://gitter.im/tj/n)
 [![npm](https://img.shields.io/npm/dt/n.svg?style=flat-square)](https://www.npmjs.com/package/n)
 [![npm](https://img.shields.io/npm/dm/n.svg?style=flat-square)](https://www.npmjs.com/package/n)
 [![npm](https://img.shields.io/npm/v/n.svg?style=flat-square)](https://www.npmjs.com/package/n)
@@ -8,11 +7,21 @@
 
 Node.js version management: no subshells, no profile setup, no convoluted API, just **simple**.
 
-## **Want to install Node nightly releases? Try [this](https://github.com/tj/n/issues/376#issuecomment-250876666)!**
-
 ![](http://nimit.io/images/n/n.gif)
 
-(Unfortunately `n` is not supported on Windows yet. If you're able to make it work, send in a pull request!)
+(Unfortunately `n` is not supported on Windows.)
+
+- [`n` – Interactively Manage Your Node.js Versions](#n-%E2%80%93-interactively-manage-your-nodejs-versions)
+    - [Installation](#installation)
+        - [Third Party Installers](#third-party-installers)
+    - [Installing/Activating Node Versions](#installingactivating-node-versions)
+    - [Removing Versions](#removing-versions)
+    - [Binary Usage](#binary-usage)
+    - [Usage](#usage)
+    - [Custom source](#custom-source)
+    - [Custom architecture](#custom-architecture)
+    - [Additional Details](#additional-details)
+    - [License](#license)
 
 ## Installation
 
@@ -29,16 +38,22 @@ to install `n` to `bin/n` of the directory specified in the environment variable
 Once installed, `n` installs `node` versions to subdirectory `n/versions` of the directory specified in environment variable `N_PREFIX`, which defaults to `/usr/local`; the _active_ `node`/`iojs` version is installed directly in `N_PREFIX`.
 To change the default to, say, `$HOME`, prefix later calls to `n` with `N_PREFIX=$HOME ` or add `export N_PREFIX=$HOME` to your shell initialization file.
 
-Additionally, consider third-party installer [n-install](https://github.com/mklement0/n-install), which allows installation directly from GitHub; for instance,
+### Third Party Installers
+
+On macOS with [Homebrew](https://brew.sh/) you can install the [`n` formula](https://github.com/Homebrew/homebrew-core/blob/master/Formula/n.rb).
+
+    brew install n
+
+On Linux and macOS, [n-install](https://github.com/mklement0/n-install) allows installation directly from GitHub; for instance:
 
     curl -L https://git.io/n-install | bash
 
-sets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest stable `node` version.
+n-install sets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest stable `node` version.
 
 
 As a result, both `n` itself and all `node` versions it manages are hosted inside a single, optionally configurable directory, which you can later remove with the included `n-uninstall` script. `n-update` updates `n` itself to the latest version. See the [n-install repo](https://github.com/mklement0/n-install) for more details.
 
-### Installing/Activating Versions
+## Installing/Activating Node Versions
 
 Simply execute `n <version>` to install a version of `node`. If `<version>` has already been installed (via `n`), `n` will activate that version.
 A leading v is optional, and a partial version number installs the newest matching version.
@@ -64,7 +79,7 @@ Use or install the latest LTS official release:
 
     $ n lts
 
-### Removing Versions
+## Removing Versions
 
 Remove some versions:
 
@@ -80,7 +95,7 @@ Removing all versions except the current version:
 $ n prune
 ```
 
-### Binary Usage
+## Binary Usage
 
 When running multiple versions of `node`, we can target
 them directly by asking `n` for the binary path:
@@ -95,16 +110,6 @@ Or by using a specific version through `n`'s `use` sub-command:
 Flags also work here:
 
     $ n as 0.9.4 --debug some.js
-
-### Working with `npm`
-
-After switching Node.js versions using `n`, `npm` may not work properly. This should fix it (thanks [@mikemoser](https://github.com/mikemoser)!):
-
-```sh
-$ curl -0 -L https://npmjs.com/install.sh | sudo sh
-```
-
-`sudo` may not be required depending on your system configuration.
 
 ## Usage
 
@@ -188,14 +193,6 @@ To alter where `n` operates, simply `export N_PREFIX`.
 `n` does not work on Windows at the moment. Pull Requests are appreciated.
 
 If you are searching for the latest version of `n` below 2.x.x, check out the branch `1.x.x`.
-
-## Core Team
-
-* Nimit Kalra – [@qw3rtman](https://github.com/qw3rtman)
-* Ted Gaydos – [@tedgaydos](https://github.com/tedgaydos)
-* Travis Webb – [@tjwebb](https://github.com/tjwebb)
-
-Please Read [Contributing Docs](https://github.com/tj/n/blob/master/.github/CONTRIBUTING.md)
 
 ## License
 
