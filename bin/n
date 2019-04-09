@@ -4,7 +4,7 @@
 # Setup.
 #
 
-VERSION="3.0.1"
+VERSION="3.0.2"
 N_PREFIX=${N_PREFIX-/usr/local}
 BASE_VERSIONS_DIR=$N_PREFIX/n/versions
 
@@ -82,22 +82,6 @@ DEFAULT=0
 QUIET=true
 ACTIVATE=true
 ARCH=
-
-#
-# set_default <BIN_NAME>
-#
-
-# set_default() {
-#   for (( i=0 ; i<${#BINS[@]} ; i++ )); do
-#     if test ${BINS[$i]} = $1; then
-#       DEFAULT=$i
-#     fi
-#   done
-# }
-
-for dir in ${VERSIONS_DIR[@]}; do
-  test -d $dir || mkdir -p $dir
-done
 
 #
 # set_arch <arch> to override $(uname -a)
