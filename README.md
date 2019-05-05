@@ -7,9 +7,9 @@
 
 Node.js version management: no subshells, no profile setup, no convoluted API, just **simple**.
 
-![](http://nimit.io/images/n/n.gif)
+![usage animation](http://nimit.io/images/n/n.gif)
 
-(Unfortunately `n` is not supported on Windows.)
+(Note: `n` is not supported natively on Windows.)
 
 - [`n` – Interactively Manage Your Node.js Versions](#n-%E2%80%93-interactively-manage-your-nodejs-versions)
     - [Installation](#installation)
@@ -21,26 +21,25 @@ Node.js version management: no subshells, no profile setup, no convoluted API, j
     - [Custom source](#custom-source)
     - [Custom architecture](#custom-architecture)
     - [Additional Details](#additional-details)
-    - [License](#license)
 
 ## Installation
 
 Since you probably already have `node`, the easiest way to install `n` is through `npm`:
 
-    $ npm install -g n
+    npm install -g n
 
 Alternatively, you can clone this repo and
 
-    $ make install
+    make install
 
 to install `n` to `bin/n` of the directory specified in the environment variable `$PREFIX`, which defaults to `/usr/local` (note that you will likely need to use `sudo`). To install `n` in a custom location (such as `$CUSTOM_LOCATION/bin/n`), run `PREFIX=$CUSTOM_LOCATION make install`.
 
 Once installed, `n` installs `node` versions to subdirectory `n/versions` of the directory specified in environment variable `N_PREFIX`, which defaults to `/usr/local`; the _active_ `node` version is installed directly in `N_PREFIX`.
-To change the default to, say, `$HOME`, prefix later calls to `n` with `N_PREFIX=$HOME ` or add `export N_PREFIX=$HOME` to your shell initialization file.
+To change the default to, say, `$HOME`, prefix later calls to `n` with `N_PREFIX=$HOME` or add `export N_PREFIX=$HOME` to your shell initialization file.
 
 To avoid requiring `sudo` for `n` and `npm` global installs, it is recommended you either install to your home directory using `N_PREFIX`, or take ownership of the system directories:
 
-```
+```bash
 # make cache folder (if missing) and take ownership
 sudo mkdir -p /usr/local/n
 sudo chown -R $(whoami) /usr/local/n
@@ -50,7 +49,7 @@ sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/lo
 
 ### Third Party Installers
 
-On macOS with [Homebrew](https://brew.sh/) you can install the [`n` formula](https://github.com/Homebrew/homebrew-core/blob/master/Formula/n.rb).
+On macOS with [Homebrew](https://brew.sh/) you can install the [n formula](https://github.com/Homebrew/homebrew-core/blob/master/Formula/n.rb).
 
     brew install n
 
@@ -60,7 +59,6 @@ On Linux and macOS, [n-install](https://github.com/mklement0/n-install) allows i
 
 n-install sets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest stable `node` version.
 
-
 As a result, both `n` itself and all `node` versions it manages are hosted inside a single, optionally configurable directory, which you can later remove with the included `n-uninstall` script. `n-update` updates `n` itself to the latest version. See the [n-install repo](https://github.com/mklement0/n-install) for more details.
 
 ## Installing/Activating Node Versions
@@ -68,9 +66,9 @@ As a result, both `n` itself and all `node` versions it manages are hosted insid
 Simply execute `n <version>` to install a version of `node`. If `<version>` has already been installed (via `n`), `n` will activate that version.
 A leading v is optional, and a partial version number installs the newest matching version.
 
-    $ n 4.9.1
-    $ n 10
-    $ n v8.11.3
+    n 4.9.1
+    n 10
+    n v8.11.3
 
 Execute `n` on its own to view your currently installed versions. Use the up and down arrow keys to navigate and press enter to select. Use `q` or ^C (control + C) to exit the selection screen.
 If you like vim key bindings during the selection of node versions, you can use `j` and `k` to navigate up or down without using arrows.
@@ -83,27 +81,21 @@ If you like vim key bindings during the selection of node versions, you can use 
 
 Use or install the latest official release:
 
-    $ n latest
+    n latest
 
 Use or install the latest LTS official release:
 
-    $ n lts
+    n lts
 
 ## Removing Versions
 
 Remove some versions:
 
-    $ n rm 0.9.4 v0.10.0
-
-Alternatively, you can use `-` in lieu of `rm`:
-
-    $ n - 0.9.4
+    n rm 0.9.4 v0.10.0
 
 Removing all versions except the current version:
 
-```bash
-$ n prune
-```
+    n prune
 
 ## Binary Usage
 
@@ -115,11 +107,11 @@ them directly by asking `n` for the binary path:
 
 Or by using a specific version through `n`'s `use` sub-command:
 
-    $ n use 0.9.4 some.js
+    n use 0.9.4 some.js
 
 Flags also work here:
 
-    $ n as 0.9.4 --debug some.js
+    n as 0.9.4 --debug some.js
 
 ## Usage
 
@@ -140,14 +132,14 @@ Output can also be obtained from `n --help`.
       n use <version> [args ...]     Execute node <version> with [args ...]
       n bin <version>                Output bin path for <version>
       n rm <version ...>             Remove the given version(s)
-      n prune                        Remove all versions except the current version
+      n prune                        Remove all versions except the active version
       n --latest                     Output the latest node version available
       n --lts                        Output the latest LTS node version available
       n ls                           Output the versions of node available
 
     Options:
 
-      -V, --version   Output current version of n
+      -V, --version   Output version of n
       -h, --help      Display help information
       -q, --quiet     Disable curl output (if available)
       -d, --download  Download only
@@ -171,14 +163,14 @@ For example, to grab the latest io.js version:
 
 Required Variables:
 
-* `PROJECT_NAME`: The name the project will be stored under
-* `PROJECT_URL`: The location to download the project from. Note, this must follow the same format as the Node.js repos
+- `PROJECT_NAME`: The name the project will be stored under
+- `PROJECT_URL`: The location to download the project from. Note, this must follow the same format as the Node.js repos
 
 Optional Variables:
 
-* `HTTP_USER`: The username if the `PROJECT_URL` is protected by basic authentication
-* `HTTP_PASSWORD`: The password if the `PROJECT_URL` is protected by basic authentication
-* `PROJECT_VERSION_CHECK`: Many custom projects keep the same version number as the Node.js release they are based on, and maintain their own separate version in process. This allows you to define a JavaScript variable that will be used to check for the version of the process, for example: `process.versions.node`
+- `HTTP_USER`: The username if the `PROJECT_URL` is protected by basic authentication
+- `HTTP_PASSWORD`: The password if the `PROJECT_URL` is protected by basic authentication
+- `PROJECT_VERSION_CHECK`: Many custom projects keep the same version number as the Node.js release they are based on, and maintain their own separate version in process. This allows you to define a JavaScript variable that will be used to check for the version of the process, for example: `process.versions.node`
 
 ## Custom architecture
 
@@ -186,11 +178,11 @@ By default `n` picks the binaries matching your system architecture, e.g. `n` wi
 
 Download and use latest 32 bit version of `node`:
 
-    $ n --arch x86 latest
+    n --arch x86 latest
 
 Download and use 64 bit LTS version of `node` for older Mac Intel Core 2 Duo systems (x86 image is no longer available but x64 runs fine):
 
-    $ n --arch x64 lts
+    n --arch x64 lts
 
 ## Additional Details
 
@@ -199,30 +191,3 @@ Download and use 64 bit LTS version of `node` for older Mac Intel Core 2 Duo sys
 Activated versions are then installed to the prefix `/usr/local`, which may be altered via the __`N_PREFIX`__ environment variable.
 
 To alter where `n` operates, simply `export N_PREFIX`.
-
-If you are searching for the latest version of `n` below 2.x.x, check out the branch `1.x.x`.
-
-## License
-
-(The MIT License)
-
-Copyright (c) 2014 TJ Holowaychuk &lt;tj@vision-media.ca&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

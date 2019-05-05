@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- markdownlint-disable MD024 -->
 
+## [4.0.0]
+
+Only minor functional changes, but technically could break scripts relying on specific behaviour.
+
+### Fixed
+
+- remove trailing space from `bin` output [#456]
+
+### Added
+
+- development tests [#545]
+
+### Changed
+
+- internal: improve shell script based on ShellCheck suggestions, quoting variables use etc [#187] [#465]
+- put single quote marks around parameters to clarify error messages [#485]
+- update terminology to be more careful with current/latest [#522]
+
 ## [3.0.2] (2019-04-07)
 
 ### Added
@@ -61,6 +79,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- reference links for issues and pull requests -->
 
 [#169]: https://github.com/tj/n/issues/169
+[#187]: https://github.com/tj/n/issues/187
 [#292]: https://github.com/tj/n/issues/292
 [#327]: https://github.com/tj/n/issues/327
 [#331]: https://github.com/tj/n/issues/331
@@ -71,12 +90,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#416]: https://github.com/tj/n/issues/416
 [#441]: https://github.com/tj/n/issues/441
 [#448]: https://github.com/tj/n/issues/448
+[#456]: https://github.com/tj/n/issues/456
+[#465]: https://github.com/tj/n/issues/465
 [#466]: https://github.com/tj/n/issues/466
 [#467]: https://github.com/tj/n/issues/467
+[#485]: https://github.com/tj/n/issues/485
 [#512]: https://github.com/tj/n/issues/512
 [#516]: https://github.com/tj/n/issues/516
 [#518]: https://github.com/tj/n/issues/518
 [#521]: https://github.com/tj/n/issues/521
+[#522]: https://github.com/tj/n/issues/522
 [#528]: https://github.com/tj/n/issues/528
 [#529]: https://github.com/tj/n/issues/529
 [#531]: https://github.com/tj/n/issues/531
@@ -84,12 +107,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#534]: https://github.com/tj/n/issues/534
 [#536]: https://github.com/tj/n/issues/536
 [#541]: https://github.com/tj/n/issues/541
+[#545]: https://github.com/tj/n/issues/545
 [#548]: https://github.com/tj/n/issues/548
 [#562]: https://github.com/tj/n/issues/562
 
 <!-- reference links for releases -->
 
 [Unreleased]: https://github.com/tj/n/compare/master...develop
+[4.0.0]: https://github.com/tj/n/compare/v3.0.2...v4.0.0
 [3.0.2]: https://github.com/tj/n/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/tj/n/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/tj/n/compare/v2.1.12...v3.0.0
