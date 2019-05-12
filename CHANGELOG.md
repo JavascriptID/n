@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- markdownlint-disable MD024 -->
 
+## [4.1.0]
+
+### Added
+
+- 'n uninstall` to remove node and npm
+- describe `NODE_MIRROR` in `README`
+
+### Removed
+
+- `PROJECT_NAME` and `PROJECT_URL` from `README`. First step to deprecating `n project`. Open an issue if you still need this!
+
 ## [4.0.0]
 
 Only minor functional changes, but technically could break scripts relying on specific behaviour.
@@ -114,6 +125,7 @@ Only minor functional changes, but technically could break scripts relying on sp
 <!-- reference links for releases -->
 
 [Unreleased]: https://github.com/tj/n/compare/master...develop
+[4.1.0]: https://github.com/tj/n/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/tj/n/compare/v3.0.2...v4.0.0
 [3.0.2]: https://github.com/tj/n/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/tj/n/compare/v3.0.0...v3.0.1

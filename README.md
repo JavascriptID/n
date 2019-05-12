@@ -57,14 +57,14 @@ On Linux and macOS, [n-install](https://github.com/mklement0/n-install) allows i
 
     curl -L https://git.io/n-install | bash
 
-n-install sets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest stable `node` version.
+n-install sets both `PREFIX` and `N_PREFIX` to `$HOME/n`, installs `n` to `$HOME/n/bin`, modifies the initialization files of supported shells to export `N_PREFIX` and add `$HOME/n/bin` to the `PATH`, and installs the latest LTS `node` version.
 
 As a result, both `n` itself and all `node` versions it manages are hosted inside a single, optionally configurable directory, which you can later remove with the included `n-uninstall` script. `n-update` updates `n` itself to the latest version. See the [n-install repo](https://github.com/mklement0/n-install) for more details.
 
 ## Installing/Activating Node Versions
 
 Simply execute `n <version>` to install a version of `node`. If `<version>` has already been installed (via `n`), `n` will activate that version.
-A leading v is optional, and a partial version number installs the newest matching version.
+A leading `v` is optional, and a partial version number installs the newest matching version.
 
     n 4.9.1
     n 10
@@ -89,13 +89,19 @@ Use or install the latest LTS official release:
 
 ## Removing Versions
 
-Remove some versions:
+Remove some cached versions:
 
     n rm 0.9.4 v0.10.0
 
-Removing all versions except the current version:
+Removing all cached versions except the current version:
 
     n prune
+
+Remove the installed node and npm (does not affect the cached version). This can be useful
+to revert to the system version of node (if in a different location), or if you no longer
+wish to use node and npm, or are switching to a different way of managing them.
+
+    n uninstall
 
 ## Binary Usage
 
@@ -155,22 +161,12 @@ Output can also be obtained from `n --help`.
 
 ## Custom source
 
-If you would like to use a project other than the official Node.js project, you can use the special `n project [command]` which allows you to control the behavior of `n` using environment variables.
+If you would like to use a different node mirror which has the same layout as the default <https://nodejs.org/dist/>, you can define `NODE_MIRROR`.
+The most common example is users in China can define:
 
-For example, to grab the latest io.js version:
-
-      PROJECT_NAME="iojs" PROJECT_URL="https://iojs.org/dist/" n project latest
-
-Required Variables:
-
-- `PROJECT_NAME`: The name the project will be stored under
-- `PROJECT_URL`: The location to download the project from. Note, this must follow the same format as the Node.js repos
-
-Optional Variables:
-
-- `HTTP_USER`: The username if the `PROJECT_URL` is protected by basic authentication
-- `HTTP_PASSWORD`: The password if the `PROJECT_URL` is protected by basic authentication
-- `PROJECT_VERSION_CHECK`: Many custom projects keep the same version number as the Node.js release they are based on, and maintain their own separate version in process. This allows you to define a JavaScript variable that will be used to check for the version of the process, for example: `process.versions.node`
+```bash
+export NODE_MIRROR=https://npm.taobao.org/mirrors/node
+```
 
 ## Custom architecture
 
