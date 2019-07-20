@@ -7,7 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- markdownlint-disable MD024 -->
 
-## [4.1.0]
+## [5.0.1] (2019-07-20)
+
+### Changed
+
+- removed reference to prerelease version of v5.0.0 from README
+
+## [5.0.0] (2019-07-20)
+
+### Added
+
+- log message after install from cache (previously silent)
+- extra logging after install if the active and installed node locations are different
+- support for [NO_COLOR](http://no-color.org) and [CLICOLOR=0](https://bixense.com/clicolors)
+- suppress progress and colour if not interactive tty
+- define `N_USE_XZ` to download `.xz` compressed archives instead of `.gz` archives
+  
+### Changed
+
+- reinstalling active node version always does reinstall (previously silently did nothing)
+- log message for installing using menu now same format as `npm install` message
+- updates to GitHub templates and guidelines for contributing et al
+
+## [4.1.0] (2019-05-10)
 
 ### Added
 
@@ -18,7 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `PROJECT_NAME` and `PROJECT_URL` from `README`. First step to deprecating `n project`. Open an issue if you still need this!
 
-## [4.0.0]
+## [4.0.0] (2019-05-05)
 
 Only minor functional changes, but technically could break scripts relying on specific behaviour.
 
@@ -125,6 +147,7 @@ Only minor functional changes, but technically could break scripts relying on sp
 <!-- reference links for releases -->
 
 [Unreleased]: https://github.com/tj/n/compare/master...develop
+[5.0.0]: https://github.com/tj/n/compare/v4.1.0...v5.0.0
 [4.1.0]: https://github.com/tj/n/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/tj/n/compare/v3.0.2...v4.0.0
 [3.0.2]: https://github.com/tj/n/compare/v3.0.1...v3.0.2
