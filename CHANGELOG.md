@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- markdownlint-disable MD024 -->
 
+## [5.0.2] (2019-08-02)
+
+### Added
+
+- instructions to bottom of menu version selection
+
 ## [5.0.1] (2019-07-20)
 
 ### Changed
@@ -147,6 +153,8 @@ Only minor functional changes, but technically could break scripts relying on sp
 <!-- reference links for releases -->
 
 [Unreleased]: https://github.com/tj/n/compare/master...develop
+[5.0.2]: https://github.com/tj/n/compare/v5.0.1...v5.0.2
+[5.0.1]: https://github.com/tj/n/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/tj/n/compare/v4.1.0...v5.0.0
 [4.1.0]: https://github.com/tj/n/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/tj/n/compare/v3.0.2...v4.0.0
