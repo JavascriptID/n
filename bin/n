@@ -40,7 +40,7 @@ function echo_red() {
 # Setup and state
 #
 
-VERSION="6.0.1"
+VERSION="6.1.0"
 
 N_PREFIX="${N_PREFIX-/usr/local}"
 N_PREFIX=${N_PREFIX%/}
@@ -384,7 +384,7 @@ display_versions_paths() {
 #
 
 display_versions_with_selected() {
-  selected="$1"
+  local selected="$1"
   echo
   for version in $(display_versions_paths); do
     if test "$version" = "$selected"; then
@@ -394,7 +394,7 @@ display_versions_with_selected() {
     fi
   done
   echo
-  printf "Use up/down arrow keys to select a version, return key to install, q to quit"
+  printf "Use up/down arrow keys to select a version, return key to install, d to delete, q to quit"
 }
 
 #
@@ -432,7 +432,7 @@ menu_select_cache_versions() {
       $ESCAPE_SEQ)
         # Handle ESC sequences followed by other characters, i.e. arrow keys
         read -rsn 1 -t 1 tmp
-        if  [[ "$tmp" == "[" ]]; then
+        if [[ "$tmp" == "[" ]]; then
           read -rsn 1 -t 1 arrow
           case "$arrow" in
             $UP)
@@ -446,6 +446,27 @@ menu_select_cache_versions() {
               display_versions_with_selected "${selected}"
               ;;
           esac
+        fi
+        ;;
+      "d")
+        if [[ -n "${selected}" ]]; then
+          clear
+          # Note: prev/next is constrained to min/max
+          local after_delete_selection="$(next_version_installed "${selected}")"
+          if [[ "${after_delete_selection}" == "${selected}"  ]]; then
+            after_delete_selection="$(prev_version_installed "${selected}")"
+          fi
+          remove_versions "${selected}"
+
+          if [[ "${after_delete_selection}" == "${selected}" ]]; then
+            clear
+            leave_fullscreen
+            echo "All downloaded versions have been deleted from cache."
+            exit
+          fi
+
+          selected="${after_delete_selection}"
+          display_versions_with_selected "${selected}"
         fi
         ;;
       "k")
